@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 21:30:47 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/12 21:50:06 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/07/11 10:45:27 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/12 21:54:17 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+static int	is_space(char c)
 {
-	size_t			i;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	if (c == ' ' || c == '\n' || c == '\t')
+		return (1);
+	return (0);
+}
+
+char		*ft_strtrim(char const *s)
+{
+	int	start;
+	int	i;
 
 	i = 0;
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (i < n)
-	{
-		if (str1[i] != str2[i])
-			return (str1[i] - str2[i]);
+	if (!(s))
+		return (NULL);
+	if (!(*s))
+		return ((char *)s);
+	while (s[i] != 0 && is_space(s[i]))
 		i++;
-	}
-	return (0);
+	start = (s[i] == 0) ? 0 : i;
+	while (s[i] != 0)
+		i++;
+	while (i >= 0 && (s[i] == 0 || is_space(s[i])))
+		i--;
+	return (ft_strsub(s, (unsigned int)start, (size_t)(i - start + 1)));
 }

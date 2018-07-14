@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/22 15:47:19 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/05/22 20:03:37 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/07/11 13:38:05 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/12 22:47:57 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strlowcase(char *str)
+#include "libft.h"
+
+void	ft_putendl(char const *s)
 {
-	int i;
+	unsigned int	i;
 
 	i = 0;
-	while (str[i])
+	if (s)
 	{
-		if (str[i] > 64 && str[i] < 91)
-			str[i] = str[i] + 32;
-		++i;
+		while (s[i] != 0)
+			ft_putchar(s[i++]);
+		ft_putchar('\n');
 	}
-	return (str);
 }

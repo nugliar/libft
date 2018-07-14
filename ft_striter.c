@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 21:17:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/11 19:34:22 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/07/11 09:39:08 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/12 22:36:16 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i < n)
-		if (((unsigned char *)s)[i++] == (unsigned char)c)
-			return ((void *)(s + i - 1));
-	return (NULL);
+	if (s && f)
+		while (s[i] != 0)
+			f(s + i++);
 }

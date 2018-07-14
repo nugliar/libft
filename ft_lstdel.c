@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 21:17:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/11 19:34:22 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/07/13 13:04:23 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/13 16:23:43 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t	i;
+	t_list	*tmp;
+	t_list	**lst;
 
-	i = 0;
-	while (i < n)
-		if (((unsigned char *)s)[i++] == (unsigned char)c)
-			return ((void *)(s + i - 1));
-	return (NULL);
+	tmp = NULL;
+	lst = alst;
+	if (alst && *alst)
+	{
+		tmp = *alst;
+		while (tmp)
+		{
+			tmp = tmp->next;
+			ft_lstdelone(lst, del);
+			*lst = tmp;
+		}
+		alst = NULL;
+	}
 }

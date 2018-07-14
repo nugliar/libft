@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/22 15:46:41 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/05/22 20:04:13 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/05/21 08:55:01 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/12 22:48:03 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strupcase(char *str)
+#include "libft.h"
+
+void	ft_putstr(char const *s)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] > 96 && str[i] < 123)
-			str[i] = str[i] - 32;
-		++i;
-	}
-	return (str);
+	if (s)
+		while (s[i] != '\0')
+			ft_putchar(s[i++]);
 }

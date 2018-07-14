@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 21:17:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/11 19:34:22 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/07/11 10:33:59 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/12 15:34:03 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*str;
 
-	i = 0;
-	while (i < n)
-		if (((unsigned char *)s)[i++] == (unsigned char)c)
-			return ((void *)(s + i - 1));
+	if (s1 && s2 && (str = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+	{
+		*str = 0;
+		str = ft_strcat(str, s1);
+		str = ft_strcat(str, s2);
+		return (str);
+	}
 	return (NULL);
 }

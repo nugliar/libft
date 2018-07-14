@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 21:17:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/11 19:34:22 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/07/11 09:55:22 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/07/12 15:17:04 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
 	size_t	i;
+	char	*str;
 
 	i = 0;
-	while (i < n)
-		if (((unsigned char *)s)[i++] == (unsigned char)c)
-			return ((void *)(s + i - 1));
+	if (s)
+	{
+		if (!(str = ft_strnew(ft_strlen(s))))
+			return (NULL);
+		while (s[i] != 0)
+		{
+			str[i] = (*f)(s[i]);
+			i++;
+		}
+		str[i] = 0;
+		return (str);
+	}
 	return (NULL);
 }
