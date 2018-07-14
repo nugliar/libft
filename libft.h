@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 13:36:51 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/13 21:12:16 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/07/14 11:21:50 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstend(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list				*ft_lstlast(t_list *lst);
+void				ft_lstrev(t_list **lst);
+void				*ft_lstpop(t_list **lst);
+t_list				*ft_lstpush(
+		t_list *lst, const void *content, size_t content_size);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);

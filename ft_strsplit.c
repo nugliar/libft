@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:16:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/12 21:44:35 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/07/14 14:21:59 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,29 @@ static unsigned int	ft_calc(char const *s, char c)
 
 	i = 0;
 	num = 0;
-	while (s[i] == c && s[i] != 0)
-		i++;
-	while (s[i] != 0)
+	if (s)
 	{
-		num++;
-		while (s[i] != c && s[i] != 0)
-			i++;
 		while (s[i] == c && s[i] != 0)
 			i++;
+		while (s[i] != 0)
+		{
+			num++;
+			while (s[i] != c && s[i] != 0)
+				i++;
+			while (s[i] == c && s[i] != 0)
+				i++;
+		}
 	}
 	return (num);
+}
+
+void				ft_clean(char **arr, unsigned int words)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i <= words)
+		ft_memdel((void **)(arr + i++));
 }
 
 char				**ft_strsplit(char const *s, char c)
@@ -44,10 +56,8 @@ char				**ft_strsplit(char const *s, char c)
 	i = 0;
 	j = 0;
 	start = 0;
-	if (!s)
-		return (NULL);
 	words = ft_calc(s, c);
-	if (!(arr = (char **)malloc(sizeof(char *) * words + 1)))
+	if (!s && !(arr = (char **)malloc(sizeof(char *) * words + 1)))
 		return (NULL);
 	while (j < words)
 	{
@@ -56,7 +66,11 @@ char				**ft_strsplit(char const *s, char c)
 		start = i;
 		while (s[i] != c && s[i] != 0)
 			i++;
-		arr[j++] = ft_strsub(s, start, (size_t)(i - start));
+		if (!(arr[j++] = ft_strsub(s, start, (size_t)(i - start))))
+		{
+			ft_clean(arr && words);
+			return (NULL);
+		}
 	}
 	arr[j] = 0;
 	return (arr);
