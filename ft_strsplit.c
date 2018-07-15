@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:16:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/14 14:21:59 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/07/14 20:35:06 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char				**ft_strsplit(char const *s, char c)
 			i++;
 		if (!(arr[j++] = ft_strsub(s, start, (size_t)(i - start))))
 		{
-			ft_clean(arr && words);
+			ft_clean(arr, words);
 			return (NULL);
 		}
 	}

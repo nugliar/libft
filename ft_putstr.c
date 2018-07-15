@@ -6,11 +6,12 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:55:01 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/12 22:48:03 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/07/14 20:27:14 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 void	ft_putstr(char const *s)
 {
@@ -18,6 +19,5 @@ void	ft_putstr(char const *s)
 
 	i = 0;
 	if (s)
-		while (s[i] != '\0')
-			ft_putchar(s[i++]);
+		write(1, s, ft_strlen(s));
 }
