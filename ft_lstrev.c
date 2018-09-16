@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 10:52:20 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/14 11:20:45 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/07/26 14:39:58 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_lstrev(t_list **lst)
 	t_list	*next;
 	t_list	*prev;
 
-	if (lst)
+	prev = NULL;
+	if (lst && *lst)
 	{
 		cur = *lst;
 		while (cur != 0)

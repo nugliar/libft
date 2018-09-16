@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_printf_pr_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/17 19:34:17 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/08/09 11:52:32 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/08/11 09:24:37 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/09/02 10:05:11 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t		ft_strlen(const char *s)
+void	pr_str(t_arg *data, const char *s, int size)
 {
-	size_t len;
-
-	len = 0;
-	if (s)
-		while (s[len] != '\0')
-			++len;
-	return (len);
+	write(data->fd, s, size);
+	data->num += size;
 }

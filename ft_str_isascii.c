@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_str_isascii.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/17 19:34:17 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/08/09 11:52:32 by rsharipo         ###   ########.fr       */
+/*   Created: 2018/09/10 10:39:39 by rsharipo          #+#    #+#             */
+/*   Updated: 2018/09/10 10:39:55 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *s)
+int	ft_str_isascii(const char *s)
 {
-	size_t len;
-
-	len = 0;
-	if (s)
-		while (s[len] != '\0')
-			++len;
-	return (len);
+	if (s == NULL)
+		return (-1);
+	while (*s)
+		if (!ft_isascii(*s++))
+			return (0);
+	return (1);
 }

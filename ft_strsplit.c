@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:16:09 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/14 20:35:06 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/09/03 16:49:28 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ static unsigned int	ft_calc(char const *s, char c)
 	return (num);
 }
 
-void				ft_clean(char **arr, unsigned int words)
+char				**ft_clean(char **arr, unsigned int words)
 {
 	unsigned int	i;
 
-	i = 0;
-	while (i <= words)
-		ft_memdel((void **)(arr + i++));
+	i = -1;
+	while (arr && ++i <= words)
+		(*arr) ? free(arr[i]) : 0;
+	free(arr);
+	return (NULL);
 }
 
 char				**ft_strsplit(char const *s, char c)
@@ -57,7 +59,7 @@ char				**ft_strsplit(char const *s, char c)
 	j = 0;
 	start = 0;
 	words = ft_calc(s, c);
-	if (!s && !(arr = (char **)malloc(sizeof(char *) * words + 1)))
+	if (!s || !(arr = (char **)malloc(sizeof(char *) * (words + 1))))
 		return (NULL);
 	while (j < words)
 	{
@@ -67,11 +69,8 @@ char				**ft_strsplit(char const *s, char c)
 		while (s[i] != c && s[i] != 0)
 			i++;
 		if (!(arr[j++] = ft_strsub(s, start, (size_t)(i - start))))
-		{
-			ft_clean(arr, words);
-			return (NULL);
-		}
+			arr = ft_clean(arr, words);
 	}
-	arr[j] = 0;
+	(arr) ? (arr[j] = 0) : 0;
 	return (arr);
 }

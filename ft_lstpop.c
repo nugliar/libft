@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 10:58:25 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/14 11:21:17 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/08/31 18:49:30 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	*ft_lstpop(t_list **lst)
 	t_list	*tmp;
 	void	*ret;
 
+	ret = NULL;
 	if (lst && *lst)
 	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		ret = tmp->content;
-		free(tmp);
+		ret = (*lst)->cont;
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
 		return (ret);
 	}
 	return (NULL);

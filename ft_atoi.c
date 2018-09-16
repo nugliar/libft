@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 09:33:08 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/13 09:33:37 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/08/22 11:25:55 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	is_blank(char c)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int					i;
-	unsigned long long	nb;
-	int					neg;
-	unsigned long long	max;
+	int			i;
+	long long	nb;
+	int			neg;
+	long long	max;
 
-	max = 9223372036854775807;
+	max = LLONG_MAX;
 	i = 0;
 	nb = 0;
 	while (is_blank(str[i]))
@@ -39,7 +39,5 @@ int			ft_atoi(const char *str)
 		nb = nb * 10;
 		nb = nb + str[i++] - 48;
 	}
-	if ((nb > max && neg > 0) || (nb > max + 1 && neg < 0))
-		return ((neg > 0) ? -1 : 0);
-	return ((int)(neg * nb));
+	return (neg * nb);
 }

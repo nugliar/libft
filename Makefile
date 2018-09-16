@@ -6,7 +6,7 @@
 #    By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/28 09:51:19 by rsharipo          #+#    #+#              #
-#    Updated: 2018/07/14 11:21:47 by rsharipo         ###   ########.fr        #
+#    Updated: 2018/09/11 17:17:12 by rsharipo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,22 +24,35 @@ SRC = ft_isprint.c ft_memset.c ft_strcat.c ft_striteri.c ft_strnequ.c \
 	  ft_strtrim.c ft_isdigit.c ft_memmove.c ft_putstr_fd.c ft_striter.c \
 	  ft_strncpy.c ft_tolower.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 	  ft_lstadd.c ft_lstend.c ft_lstiter.c ft_lstmap.c ft_lstlast.c \
-	  ft_lstrev.c ft_lstpop.c ft_lstpush.c
+	  ft_lstrev.c ft_lstpop.c ft_lstpush.c ft_itoa_base.c ft_printf*.c \
+	  get_next_line.c ft_lstlen.c ft_realloc.c ft_str_isalpha.c \
+	  ft_str_isdigit.c ft_str_isalnum.c ft_str_isprint.c ft_str_isascii.c \
+	  ft_strlst.c ft_strlow.c ft_strup.c
 
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror 
 
+SAN = -g -fsanitize=address
+
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(CFLAGS) $(SRC)
-	ar rc $(NAME) $(OBJ)
+	@gcc -c $(CFLAGS) $(SRC)
+	@ar rc $(NAME) $(OBJ)
+
+s:
+	@gcc -c $(SAN) $(CFLAGS) $(SRC)
+	@ar rc $(NAME) $(OBJ)
+
+d:
+	@gcc -g -c $(CFLAGS) $(SRC)
+	@ar rc $(NAME) $(OBJ)
 
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all

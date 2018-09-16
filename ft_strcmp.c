@@ -6,7 +6,7 @@
 /*   By: rsharipo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 13:46:44 by rsharipo          #+#    #+#             */
-/*   Updated: 2018/07/12 11:05:40 by rsharipo         ###   ########.fr       */
+/*   Updated: 2018/09/11 14:11:00 by rsharipo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_strcmp(const char *s1, const char *s2)
 	int i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (INT_MIN);
 	while (s1[i] || s2[i])
 	{
 		if (s1[i] != s2[i])
